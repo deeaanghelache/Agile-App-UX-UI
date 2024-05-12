@@ -1,1 +1,61 @@
-<p>login works!</p>
+<main>
+    <div class="loginGrid">
+        <div class="leftSide">
+            
+        </div>
+        <div class="rightSide">
+            <div class="title"><h1>AgilePlanningTool</h1></div>
+
+            <br>
+            <br>
+            <br>
+
+            <div class="form">
+            <form [formGroup]="loginForm" (ngSubmit)="loginUserFunction()">
+                <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput class="form-control" 
+                        required
+                        [ngClass]="loginForm.controls['email'].errors ? 'is-invalid' : ''"
+                        formControlName="email" />
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                    <input matInput class="form-control" 
+                    placeholder="Password"
+                    type="password"
+                    [ngClass]="loginForm.controls['password'].errors ? 'is-invalid' : ''"
+                    formControlName="password" />
+                    </mat-form-field>
+                </div>
+
+                <p id="userNotFound"> {{ userNotFound }} </p>
+                <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
+
+                <button mat-raised-button color="primary"
+                id="loginButton" 
+                class="btn btn-outline-warning rounded-pill"
+                [disabled]="loginForm.invalid" 
+                type="submit">
+                    Login
+                </button>
+
+                <div id="extra">
+                    <p>
+                        Don't have an account?
+                        <a href="/register" id="goToRegister">
+                            Register
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    <div class="bubble1"></div>
+    <div class="bubble2"></div>
+</main>

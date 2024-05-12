@@ -1,1 +1,103 @@
-<p>register works!</p>
+<main>
+    <div class="registerGrid">
+        <div class="leftSide">
+
+        </div>
+        <div class="rightSide">
+            <div class="title"><h1>AgilePlanningTool</h1></div>
+
+            <div class="form">
+                <form [formGroup]="registerForm" (ngSubmit)="registerUserFunction()">
+    
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                        <mat-label>First Name</mat-label>
+                        <input class="form-control input"
+                        matInput
+                        required
+                        placeholder="First Name" 
+                        [ngClass]="registerForm.controls['firstName'].errors ? 'is-invalid' : ''"
+                        formControlName="firstName" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Last Name</mat-label>
+                        <input class="form-control input" 
+                        matInput 
+                        required
+                        placeholder="Last Name"
+                        [ngClass]="registerForm.controls['lastName'].errors ? 'is-invalid' : ''"
+                        formControlName="lastName" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                        <input class="form-control input" 
+                        matInput
+                        required
+                        placeholder="Email Address"
+                        [ngClass]="registerForm.controls['email'].errors ? 'is-invalid' : ''"
+                        formControlName="email" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                        <input class="form-control input" 
+                        placeholder="Password"
+                        type="password"
+                        required
+                        matInput
+                        [ngClass]="registerForm.controls['password'].errors ? 'is-invalid' : ''"
+                        formControlName="password" />
+                        <p style="font-size: 10px; text-align: center;"> Must contain at least 8 characters, one digit, one uppercase letter, one lowercase and a special character. </p>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Confirm Password</mat-label>
+                        <input class="form-control input" 
+                        placeholder="Confirm your password"
+                        type="password"
+                        required
+                        matInput
+                        [ngClass]="registerForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
+                        formControlName="confirmPassword"/>
+                        </mat-form-field>
+                    </div>
+    
+                    <br>
+
+                    <p id="userAlreadyExists"> {{ userAlreadyExists }} </p>
+                    <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
+
+                    <button 
+                    mat-raised-button color="primary"
+                    id="registerButton" 
+                    [disabled]="registerForm.invalid" 
+                    type="submit">
+                        Sign Up
+                    </button>
+
+                    <div id="extra">
+                        <p>
+                            Already have an account?
+                            <a href="/login" id="goToLogin">
+                                Log In
+                            </a>
+                        </p>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bubble1"></div>
+    <div class="bubble2"></div>
+</main>

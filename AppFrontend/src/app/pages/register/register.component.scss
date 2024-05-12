@@ -1,0 +1,72 @@
+main {
+    background: #A0E9FF;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.form {
+    width: 300px;
+    height: 228.151px;
+    flex-shrink: 0;
+    position: fixed;
+    top: 350px;
+    left: 560px;
+}
+
+.title {
+    display: flex;
+    width: 518px;
+    height: 29px;
+    padding-right: 1px;
+    position: fixed;
+    top: 224px;
+    left: 450px;
+    flex-shrink: 0;
+}
+
+h1 {
+    color: #000;
+-webkit-text-stroke-width: 1;
+-webkit-text-stroke-color: #000;
+font-family: Inter;
+font-size: 64px;
+font-style: normal;
+font-weight: 200;
+line-height: normal;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+button {
+    position: fixed;
+    top: 550px;
+    left: 560px;
+    width: 300px;
+    height: 45.226px;
+    flex-shrink: 0;
+}
+
+.bubble1 {
+    width: 572px;
+height: 572px;
+flex-shrink: 0;
+border-radius: 572px;
+background: #00A9FF;
+position: fixed;
+top: 500px;
+left: -137px;
+}
+
+.bubble2 {
+    width: 572px;
+    height: 572px;
+    flex-shrink: 0;
+    border-radius: 572px;
+    background: #89CFF3;
+    position: fixed;
+    top: -160px;
+    left: 1158px;
+}
