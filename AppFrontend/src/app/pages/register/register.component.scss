@@ -10,7 +10,7 @@ main {
     height: 228.151px;
     flex-shrink: 0;
     position: fixed;
-    top: 350px;
+    top: 250px;
     left: 560px;
 }
 
@@ -20,7 +20,7 @@ main {
     height: 29px;
     padding-right: 1px;
     position: fixed;
-    top: 224px;
+    top: 150px;
     left: 450px;
     flex-shrink: 0;
 }
@@ -42,7 +42,7 @@ line-height: normal;
 
 button {
     position: fixed;
-    top: 550px;
+    top: 600px;
     left: 560px;
     width: 300px;
     height: 45.226px;
@@ -69,4 +69,9 @@ left: -137px;
     position: fixed;
     top: -160px;
     left: 1158px;
+}
+
+.nameSurname {
+    display: flex; 
+    gap: 16px;
 }

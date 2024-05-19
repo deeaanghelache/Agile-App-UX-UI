@@ -10,6 +10,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {MatButtonModule} from '@angular/material/button';
     HttpClientModule, 
     MatFormFieldModule,
     MatInputModule, 
-    MatButtonModule
+    MatButtonModule,
+    BrowserAnimationsModule, 
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
