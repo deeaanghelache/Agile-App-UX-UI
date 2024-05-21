@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -8,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardUserComponent implements OnInit {
   pageSize: number = 15; // Number of projects per page
   currentPage: number = 1;
+  displayTable: boolean = true;
+  currentProject: any;
+  searchQuery: string = '';
   public totalPages = 1;
   public placeholder : string = "Developer Account \n user@user.com";
+  public displayedProjects: any[] = [];
   public projects = [
     {
         projectName: "Project Alpha",
@@ -157,16 +162,30 @@ scrumMaster: "Charlie Brown"
 }
 ];
  
+  constructor(private router:Router){
+
+  }
+
   ngOnInit(): void {
+    this.displayedProjects = this.projects;
+  }
+
+  openProjectPage(project: any) {
+    this.displayTable = false;
+    this.currentProject = project;
+  }
+
+  closeProjectPage() {
+    this.displayTable = true;
   }
 
   getPaginatedProjects() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
-    return this.projects.slice(startIndex, startIndex + this.pageSize);
+    return this.displayedProjects.slice(startIndex, startIndex + this.pageSize);
   }
 
   nextPage() {
-    this.totalPages = Math.ceil(this.projects.length / this.pageSize);
+    this.totalPages = Math.ceil(this.displayedProjects.length / this.pageSize);
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.getPaginatedProjects();
@@ -179,5 +198,26 @@ scrumMaster: "Charlie Brown"
       this.currentPage--;
       this.getPaginatedProjects();
     }
+  }
+
+  onSearchSubmit(string: any) {
+    string = string.toLowerCase();
+    if (string != ""){
+      var searchProjects: any[] = [];
+      for (var project of this.projects) {
+        var name = project.projectName.toLowerCase();
+        if (name.includes(string)){
+          searchProjects.push(project);
+        }
+      }
+      this.displayedProjects = searchProjects;
+    } else {
+      this.displayedProjects = this.projects;
+    }
+  }
+
+  logout() {
+    sessionStorage.clear();
+    this.router.navigateByUrl("/login");
   }
 }

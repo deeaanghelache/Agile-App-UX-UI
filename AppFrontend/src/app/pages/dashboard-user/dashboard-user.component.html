@@ -1,66 +1,115 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">AgilePlanningTool</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#"><i class="fa-solid fa-table-list"></i></a>
-        </div>
+  <a class="navbar-brand" href="#">AgilePlanningTool</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Projects <i class="fa-solid fa-diagram-project"></i></a>
-          </div>
-      </div>
-
-    <div class="right">
-        <button mat-flat-button class="logout" color="primary">Logout</button>
-        &nbsp;
-        <div class="user" color="raised" matTooltip="{{placeholder}}"
-        aria-label="Button that displays a tooltip when focused or hovered over"><p>U</p></div>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#"
+        ><i class="fa-solid fa-table-list"></i
+      ></a>
     </div>
+
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/all"
+        >Projects <i class="fa-solid fa-diagram-project"></i
+      ></a>
+    </div>
+  </div>
+
+  <div class="right">
+    <button mat-flat-button class="logout" (click)="logout()" color="primary">Logout</button>
+    &nbsp;
+    <div
+      class="user"
+      color="raised"
+      matTooltip="{{ placeholder }}"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+    >
+      <p routerLink="/profile">U</p>
+    </div>
+  </div>
 </nav>
 
-<div class="body">
-    <div class="header">
-        <h1> Projects </h1>
-    </div>
+<div class="body" *ngIf="displayTable === true">
+  <div class="header">
+    <h1>My Projects</h1>
+  </div>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn search btn-outline-success my-2 my-sm-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
+  <div class="form-inline my-2 my-lg-0">
+    <input
+      #search
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn search btn-outline-success my-2 my-sm-0" type="submit" (click)="onSearchSubmit(search.value)">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
 
-<br>
+  <br />
 
-<div class="table">
-  <table>
-    <thead>
-    <tr>
-      <th>Project Name</th>
-      <th>Scrum Master</th>
-      <th>Developers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let project of getPaginatedProjects()">
-      <td>{{ project.projectName }}</td>
-      <td>{{ project.scrumMaster }}</td>
-      <td><img height="30px" src="../../../assets/images/devs.png"></td>
-    </tr>
-  </tbody>
-    <tfoot>
-      <tr>
-          <td colspan="4">
-              <div class="pagination" style="float: right;">
-                  <button class="btn search btn-outline-success my-2 my-sm-0" (click)="prevPage()"  id="prev-btn">Previous</button>
-                  <span id="page-info"></span> &nbsp; &nbsp;
-                  <button class="btn search btn-outline-success my-2 my-sm-0" (click)="nextPage()"  id="next-btn">Next</button>
-              </div>
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Scrum Master</th>
+          <th>Developers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of getPaginatedProjects()">
+          <td (click)="openProjectPage(project)">{{ project.projectName }}</td>
+          <td (click)="openProjectPage(project)">{{ project.scrumMaster }}</td>
+          <td (click)="openProjectPage(project)">
+            <img height="30px" src="../../../assets/images/devs.png" />
           </td>
-      </tr>
-  </tfoot>
-  </table>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <div class="pagination" style="float: right">
+              <button
+                class="btn search btn-outline-success my-2 my-sm-0"
+                (click)="prevPage()"
+                id="prev-btn"
+              >
+                Previous
+              </button>
+              <span id="page-info"></span> &nbsp; &nbsp;
+              <button
+                class="btn search btn-outline-success my-2 my-sm-0"
+                (click)="nextPage()"
+                id="next-btn"
+              >
+                Next
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>
+
+<div *ngIf="displayTable === false">
+  <div id="goBack">
+    <button class="btn btn-primary rounded-pill" (click)="closeProjectPage()">
+      Back to dashboard
+    </button>
+  </div>
+  <app-project-page [project]="currentProject"></app-project-page>
 </div>

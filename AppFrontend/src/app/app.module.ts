@@ -11,14 +11,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTooltipModule} from '@angular/material/tooltip'; 
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ProjectPageComponent } from './pages/project-page/project-page.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AllProjectsComponent } from './pages/all-projects/all-projects.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardUserComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProjectPageComponent,
+    ProfileComponent,
+    AllProjectsComponent
   ],
   imports: [
     BrowserModule,
